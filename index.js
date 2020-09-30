@@ -11,9 +11,12 @@ connectDB();
 const PORT = process.env.PORT || 4000;
 
 // Routes
-app.get('/', (req, res) => {
-    res.send('Welcome to the API REST')
-});
+// app.get('/', (req, res) => {
+//     res.send('Welcome to the API REST')
+// });
+
+// Routes
+app.use('/api/shows', require('./routes/shows'));
 
 // Start App
 app.listen(PORT, () => {
