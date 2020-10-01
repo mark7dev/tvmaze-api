@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 4000;
 // });
 
 // Routes
-app.use('/api/shows', require('./routes/shows'));
+app.use('/tvmazeapi/shows', require('./routes/shows'));
 
 // Start App
 app.listen(PORT, () => {
