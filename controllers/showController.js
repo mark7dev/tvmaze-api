@@ -1,6 +1,13 @@
 const Show = require('../Models/showModel');
+const { validationResult } = require('express-validator');
 
 exports.createShow = async (req, res) => {
+
+    // Check if there are errors
+    const errors = validationResult(req);
+    if( !errors.isEmpty() ) {
+        return res.status(400).json({ errors: errors.array() });
+    }
 
     // Get name from request
     const { name } = req.body;
