@@ -24,4 +24,8 @@ router.post('/',
     showController.createShow
 );
 
+router.get('/',
+    showController.getShows
+);
+
 module.exports = router;

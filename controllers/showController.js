@@ -33,3 +33,14 @@ exports.createShow = async (req, res) => {
         res.status(400).send('There is an error!');
     }
 }
+
+// Get all shows from current user
+exports.getShows = async (req, res) => {
+    try {
+        const shows = await Show.find().sort({ name: 1 });
+        res.json({ shows });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Internal error');
+    }
+}
