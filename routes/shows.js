@@ -28,4 +28,20 @@ router.get('/',
     showController.getShows
 );
 
+// Update show by id
+router.put('/:id',
+    [
+        check('name', 'Name is required').not().isEmpty(),
+        check('duration', 'Duration is required').not().isEmpty(),
+        check('duration', 'Duration must be an integer').isInt({ min: 1, max: 60 }),
+        check('schedule', 'Schedule is required').not().isEmpty(),
+        check('poster', 'Poster is required').not().isEmpty(),
+        check('rating', 'Rating is required').not().isEmpty(),
+        check('rating', 'Rating must be float').isFloat(),
+        check('language', 'Language is required').not().isEmpty(),
+        check('language', 'Language must be English, Spanish or Portuguese').isIn(['English', 'Spanish', 'Portuguese'])
+    ], 
+    showController.updateShow
+)
+
 module.exports = router;

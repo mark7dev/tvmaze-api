@@ -44,3 +44,48 @@ exports.getShows = async (req, res) => {
         res.status(500).send('Internal error');
     }
 }
+
+// Update show
+exports.updateShow = async (req, res) => {
+
+    // Check if there are errors
+    const errors = validationResult(req);
+    if( !errors.isEmpty() ) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    // Get info from project
+    const { name, duration, schedule, poster, rating, language } = req.body;
+    const showUpdated = {
+        name,
+        duration,
+        schedule,
+        poster,
+        rating,
+        language
+    };
+    
+
+    try {
+        // Find request show id in DB
+        let show = await Show.findById(req.params.id);
+
+        // Check if show exist
+        if(!show) {
+            return res.status(404).json({ msg: 'Show not found'})
+        }
+
+        // Update show
+        show = await Show.findByIdAndUpdate(
+            { _id: req.params.id }, 
+            { $set: showUpdated }, 
+            { new: true }
+        )
+
+        res.json({ show })
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Internal error');
+    }
+}
