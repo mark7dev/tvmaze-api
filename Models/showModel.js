@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+require('mongoose-type-url');
 
 const ShowSchema = mongoose.Schema({
     name: {
@@ -16,7 +17,7 @@ const ShowSchema = mongoose.Schema({
         trim: true
     },
     poster: {
-        type: String,
+        type: mongoose.SchemaTypes.Url,
         required: true,
         trim: true
     },
