@@ -10,10 +10,7 @@ router.post('/',
     [
         check('name', 'Name is required').not().isEmpty(),
         check('duration', 'Duration is required').not().isEmpty(),
-        check('duration', 'Duration must be an integer').isInt({ min: 1, max: 60 }),
-        // check('duration')
-        //     .not().isEmpty().withMessage('Duration is required')
-        //     .isInt().withMessage('Duration must be an integer'),
+        check('duration', 'Duration must be an integer').isInt(),
         check('schedule', 'Schedule is required').not().isEmpty(),
         check('poster', 'Poster is required').not().isEmpty(),
         check('rating', 'Rating is required').not().isEmpty(),
@@ -33,7 +30,7 @@ router.put('/:id',
     [
         check('name', 'Name is required').not().isEmpty(),
         check('duration', 'Duration is required').not().isEmpty(),
-        check('duration', 'Duration must be an integer').isInt({ min: 1, max: 60 }),
+        check('duration', 'Duration must be an integer').isInt(),
         check('schedule', 'Schedule is required').not().isEmpty(),
         check('poster', 'Poster is required').not().isEmpty(),
         check('rating', 'Rating is required').not().isEmpty(),

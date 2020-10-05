@@ -31,7 +31,7 @@ exports.createShow = async (req, res) => {
         res.json({ msg: 'Show created successfully!' });
     } catch (error) {
         console.log(error);
-        res.status(400).send('There is an error!');
+        res.status(500).send('Internal error');
     }
 }
 
@@ -83,7 +83,8 @@ exports.updateShow = async (req, res) => {
             { new: true }
         )
 
-        res.json({ show })
+        // res.json({ show })
+        res.json({ msg: 'Show updated successfully!' });
         
     } catch (error) {
         console.log(error);

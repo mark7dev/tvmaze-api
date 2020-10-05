@@ -3,7 +3,7 @@ require('dotenv').config({ path: '.env' });
 
 const connectDB = async ()=> {
     try {
-        await mongoose.connect(process.env.DB_MONGO, {
+        await mongoose.connect('mongodb://localhost/tvmazelocal', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useFindAndModify: false
