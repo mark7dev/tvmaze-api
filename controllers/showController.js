@@ -1,6 +1,7 @@
 const Show = require('../Models/showModel');
 const { validationResult } = require('express-validator');
 
+// Create show
 exports.createShow = async (req, res) => {
 
     // Check if there are errors
@@ -54,7 +55,7 @@ exports.updateShow = async (req, res) => {
         return res.status(400).json({ errors: errors.array() });
     }
 
-    // Get info from project
+    // Get info from show
     const { name, duration, schedule, poster, rating, language } = req.body;
     const showUpdated = {
         name,
@@ -84,6 +85,27 @@ exports.updateShow = async (req, res) => {
 
         res.json({ show })
         
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Internal error');
+    }
+}
+
+// Delete show by id
+exports.deleteShow = async(req, res) => {
+    try {
+        // Find request show id in DB
+        let show = await Show.findById(req.params.id);
+
+        // Check if show exist
+        if(!show) {
+            return res.status(404).json({ msg: 'Show not found'})
+        }
+
+        // Delete show
+        await Show.findOneAndRemove({ _id: req.params.id });
+        res.json({ msg: 'Show removed'})
+
     } catch (error) {
         console.log(error);
         res.status(500).send('Internal error');

@@ -44,4 +44,9 @@ router.put('/:id',
     showController.updateShow
 )
 
+// Delete show by id
+router.delete('/:id',
+    showController.deleteShow
+)
+
 module.exports = router;
